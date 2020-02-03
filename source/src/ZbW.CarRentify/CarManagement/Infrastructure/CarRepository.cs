@@ -15,6 +15,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
         {
             _carContext = new CarContext();
         }
+
         public void Delete(Car entity)
         {
             _carContext.Cars.Remove(entity);
