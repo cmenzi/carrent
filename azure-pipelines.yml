@@ -10,11 +10,13 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: DotNetCoreCLI@2
+- task: VSBuild@1
   inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    solution: '**\*.sln'
+    vsVersion: '16.0'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)"'
+    configuration: 'Release'
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'PublishProfile'
