@@ -21,4 +21,4 @@ steps:
     azureSubscription: 'Azure for Students(16e71248-4b23-451d-bbc3-3b4a75d36a5d)'
     appType: 'webAppLinux'
     WebAppName: 'zbw-cme-carrent-api'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
