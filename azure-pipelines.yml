@@ -14,7 +14,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: 'source\src\ZbW.CarRentify\ZbW.CarRentify.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
