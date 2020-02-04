@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -17,8 +17,7 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 - task: AzureRmWebAppDeployment@4
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure for Students(16e71248-4b23-451d-bbc3-3b4a75d36a5d)'
-    appType: 'webAppLinux'
-    WebAppName: 'zbw-cme-carrent-api'
+    ConnectionType: 'PublishProfile'
+    PublishProfilePath: '$(System.DefaultWorkingDirectory)/**/*.pubxml'
+    PublishProfilePassword: 'F2sJvfi5T4NtjmvRAEmEyfofz06gkhMBZl9jEiTT1b00CgT9kHpAYdsTm2Nr'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
